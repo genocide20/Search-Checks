@@ -218,6 +218,13 @@
       font-size: 14px;
       text-align: center;
     }
+    .highlight {
+      font-weight: bold;
+      background-color: #fff3cd;
+      padding: 4px 8px;
+      border-radius: 6px;
+    display: inline-block;
+    }
 
     @media (max-width: 720px) {
       .container {
@@ -286,10 +293,10 @@
         <li>ต้นฉบับใบเสร็จรับเงิน</li>
         <li>หนังสือมอบอำนาจ โดยต้องระบุว่าเป็นการรับเช็คของ
           <ul>
-            <li>คณะเทคนิคการแพทย์ ม.มหิดล</li>
+            <li class="highlight"><b>คณะเทคนิคการแพทย์ ม.มหิดล</b></li>
             <li>ถ้าเป็นโครงการวิจัยต้องระบุว่าเป็นเช็คของ
+            <li class="highlight"><b>โครงการวิจัยฯ คณะเทคนิคการแพทย์ ม.มหิดล</b></li>
               <ul>
-                <li>โครงการวิจัยฯ คณะเทคนิคการแพทย์ ม.มหิดล</li>
                 <li>ครั้งเดียว: แนบอากรแสตมป์ 10 บาท พร้อมระบุหมายเลข Invoice</li>
                 <li>รายปี: แนบอากรแสตมป์ 30 บาท และระบุช่วงวันที่ เช่น 1 ต.ค. 2568 - 30 ก.ย. 2569</li>
               </ul>
@@ -368,10 +375,10 @@
         checkDate: ['วันที่เช็ค', 'check date', 'date'],
         checkNumber: ['เลขที่เช็ค', 'check no', 'check number'],
         company: ['ชื่อบริษัท', 'company name', 'company'],
-        invoice: ['ใบแจ้งหนี้', 'invoice'],
+        invoice: ['ใบแจ้งหนี้ Inovice', 'invoice'],
         beforeTax: ['จำนวนเงินก่อนหักภาษี', 'amount before tax', 'before tax'],
         tax1: ['ภาษี 1%', 'tax 1%', 'tax1', 'tax'],
-        afterTax: ['จำนวนเงินหลังภาษี', 'amount after tax', 'after tax'],
+        afterTax: ['จำนวนเงินหลังหักภาษี', 'amount after tax', 'after tax'],
         authorityType: ['ประเภทมอบอำนาจ', 'authority type', 'type']
       };
 
