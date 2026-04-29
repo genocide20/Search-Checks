@@ -225,6 +225,9 @@
       border-radius: 6px;
     display: inline-block;
     }
+    .text-right {
+      text-align: right;
+    }
 
     @media (max-width: 720px) {
       .container {
@@ -291,18 +294,19 @@
       <ul>
         <li>สำเนาหนังสือรับรองการจัดตั้งบริษัท</li>
         <li>ต้นฉบับใบเสร็จรับเงิน</li>
-        <li>หนังสือมอบอำนาจ โดยต้องระบุว่าเป็นการรับเช็คของ
-          <ul>
+        <li>หนังสือมอบอำนาจ</li>
+        <ul>
+            <li>ครั้งเดียว: แนบอากรแสตมป์ 10 บาท พร้อมระบุหมายเลข Invoice</li>
+            <li>รายปี: แนบอากรแสตมป์ 30 บาท และระบุช่วงวันที่ตามปีงบมหาวิทยาลัย เช่น 1 ต.ค. 2568 - 30 ก.ย. 2569</li>
+        </ul>
+        <ul>
+          <li>ต้องระบุว่าเป็นการรับเช็คของ
             <li class="highlight"><b>คณะเทคนิคการแพทย์ ม.มหิดล</b></li>
             <li>ถ้าเป็นโครงการวิจัยต้องระบุว่าเป็นเช็คของ
             <li class="highlight"><b>โครงการวิจัยฯ คณะเทคนิคการแพทย์ ม.มหิดล</b></li>
-              <ul>
-                <li>ครั้งเดียว: แนบอากรแสตมป์ 10 บาท พร้อมระบุหมายเลข Invoice</li>
-                <li>รายปี: แนบอากรแสตมป์ 30 บาท และระบุช่วงวันที่ เช่น 1 ต.ค. 2568 - 30 ก.ย. 2569</li>
-              </ul>
             </li>
-          </ul>
-        </li>
+          </li>
+        </ul>
         <li>สำเนาบัตรประชาชน ของผู้มารับเช็คและผู้มอบอำนาจพร้อมเซ็นรับรองสำเนาถูกต้อง</li>
       </ul>
 
@@ -438,9 +442,12 @@
           row[columnIndexes.afterTax] || '',
           row[columnIndexes.authorityType] || ''
         ];
-        cells.forEach(cell => {
+        cells.forEach((cell, index) => {
           const td = document.createElement('td');
           td.textContent = cell;
+          if (index >= 4 && index <= 6) {
+            td.classList.add('text-right');
+          }
           tr.appendChild(td);
         });
         tbody.appendChild(tr);
