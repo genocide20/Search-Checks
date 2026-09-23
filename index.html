@@ -530,7 +530,33 @@
         }
         
         if (dataLines.length > 0) {
-          locationText.innerHTML = dataLines.map(line => `<div>${line || '&nbsp;'}</div>`).join('');
+          locationText.replaceChildren();
+
+          dataLines.forEach(line => {
+            const div = document.createElement('div');
+            const pattern = /https:\/\/line\.me\/[^\s<>"']+/g;
+            let lastIndex = 0;
+
+            for (const match of line.matchAll(pattern)) {
+              div.append(document.createTextNode(
+                line.slice(lastIndex, match.index)
+              ));
+
+              const link = document.createElement('a');
+              link.href = match[0];
+              link.textContent = match[0];
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+              div.append(link);
+
+              lastIndex = match.index + match[0].length;
+            }
+
+            div.append(document.createTextNode(
+              line.slice(lastIndex) || (line ? '' : '\u00A0')
+            ));
+            locationText.append(div);
+          });
         } else {
           locationText.textContent = 'ไม่พบข้อมูลใน A1:A7';
         }
