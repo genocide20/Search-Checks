@@ -268,9 +268,36 @@
         font-size: 13px;
       }
     }
+    .notice-dialog {
+      width: min(90%, 480px);
+      border: 0;
+      border-radius: 16px;
+      padding: 28px;
+      color: #7f1d1d;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+    }
+    .notice-dialog::backdrop { background: rgba(0, 0, 0, .6); }
+    .notice-dialog h2 { margin: 0 0 16px; color: #b91c1c; }
+    .notice-dialog #noticeMessage { line-height: 1.7; overflow-wrap: anywhere; white-space: pre-wrap; }
+    .notice-dialog button {
+      display: block;
+      margin: 24px 0 0 auto;
+      padding: 10px 24px;
+      border: 0;
+      border-radius: 8px;
+      background: #b91c1c;
+      color: white;
+      font: inherit;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
+  <dialog id="importantNotice" class="notice-dialog" aria-labelledby="noticeTitle" aria-describedby="noticeMessage">
+    <h2 id="noticeTitle">⚠️ ประกาศสำคัญ</h2>
+    <div id="noticeMessage"></div>
+    <form method="dialog"><button type="submit">รับทราบ</button></form>
+  </dialog>
   <div class="container">
     <div class="header">
       <div class="logo-container">
@@ -557,6 +584,11 @@
             ));
             locationText.append(div);
           });
+          const notices = Array.from(dataLines.join('\n').matchAll(/\*{2,}([\s\S]*?)\*{2,}/g), match => match[1].trim()).filter(Boolean);
+          if (notices.length) {
+            document.getElementById('noticeMessage').textContent = notices.join('\n\n');
+            document.getElementById('importantNotice').showModal();
+          }
         } else {
           locationText.textContent = 'ไม่พบข้อมูลใน A1:A7';
         }
